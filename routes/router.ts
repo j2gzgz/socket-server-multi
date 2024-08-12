@@ -1,13 +1,20 @@
 import {Router, Request, Response} from 'express'
 import Server from '../classes/server';
-import { usuariosConectados } from '../sockets/sockect';
+import { mapa, usuariosConectados } from '../sockets/sockect';
 import { GraficaData } from '../classes/grafica';
 import { GraficaEncuestaData } from '../classes/grafica-encuesta';
 
+
 const router = Router();
 
-const grafica         = new GraficaData;
-const graficaEncuesta = new GraficaEncuestaData;
+//Mapa
+router.get('/mapa', (req: Request, res: Response) =>{
+  res.json( mapa.getMarcadore() );
+});
+
+
+const grafica         = new GraficaData();
+const graficaEncuesta = new GraficaEncuestaData();
 
 // Gráfica de línea
 router.get('/grafica', (req: Request, res: Response) =>{
